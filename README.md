@@ -39,10 +39,13 @@ I’m Chris Mathew Aje, pursuing my BCA at Kristu Jayanti College in Bengaluru. 
 
 
 # 📊 GitHub Stats:
+<p align="center">
+  <img alt="Trophies" style="padding-bottom:10px;" src="https://github-profile-trophy.vercel.app/?username=chrismat-05&theme=tokyonight&no-frame=true&margin-w=15">
+</p>
+
 ![](https://github-readme-stats.vercel.app/api?username=chrismat-05&theme=tokyonight&hide_border=false&include_all_commits=true&count_private=true)<br/>
 ![](https://github-readme-stats.vercel.app/api/top-langs/?username=chrismat-05&theme=tokyonight&hide_border=false&include_all_commits=true&count_private=true&layout=compact)<br/>
 ![](https://nirzak-streak-stats.vercel.app/?user=chrismat-05&theme=tokyonight&hide_border=false)<br/>
-
 
 # 💰 You can help me by donating
 [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/chrismat05)
