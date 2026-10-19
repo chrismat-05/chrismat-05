@@ -11,16 +11,23 @@ const GH_ASCII_URL = process.env.GH_ASCII_URL || 'https://gh.crafter.run';
 const COLS = process.env.COLS || '100';
 
 /**
- * Strips the "Last 12 Months" contribution graph and sparkline row
- * from the gh-ascii SVG so Skyline can serve as the sole contribution graph.
+ * Cleans the gh-ascii SVG by:
+ * 1. Removing the "Top repo" line
+ * 2. Removing the "Last 12 Months" contribution graph & sparkline row
+ *    so Skyline can serve as the sole contribution graph.
  */
-function stripContributionGraph(svgText) {
+function cleanSvg(svgText) {
   const lines = svgText.split('\n');
   const filtered = [];
   let skipping = false;
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
+
+    // Remove the "Top repo" line
+    if (line.includes('Top repo')) {
+      continue;
+    }
 
     // Detect start of Last 12 Months section
     if (line.includes('Last 12 Months')) {
@@ -68,7 +75,7 @@ async function fetchTheme(theme) {
   }
 
   const rawSvg = await res.text();
-  return stripContributionGraph(rawSvg);
+  return cleanSvg(rawSvg);
 }
 
 async function main() {
