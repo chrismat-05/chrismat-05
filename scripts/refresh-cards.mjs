@@ -53,9 +53,15 @@ export async function fetchStreaks(handle) {
     const days = data.contributions || [];
     days.sort((a, b) => new Date(a.date) - new Date(b.date));
 
+    const now = new Date();
+    const todayStr = now.toISOString().split('T')[0];
+
+    // Filter out future placeholder dates that the API returns for the rest of the year
+    const pastAndToday = days.filter((d) => d.date <= todayStr);
+
     let longestStreak = 0;
     let tempStreak = 0;
-    for (const day of days) {
+    for (const day of pastAndToday) {
       if (day.count > 0) {
         tempStreak++;
         if (tempStreak > longestStreak) longestStreak = tempStreak;
@@ -65,12 +71,12 @@ export async function fetchStreaks(handle) {
     }
 
     let currentStreak = 0;
-    const today = new Date().toISOString().split('T')[0];
-    for (let i = days.length - 1; i >= 0; i--) {
-      if (days[i].count > 0) {
+    for (let i = pastAndToday.length - 1; i >= 0; i--) {
+      const day = pastAndToday[i];
+      if (day.count > 0) {
         currentStreak++;
       } else {
-        if (i === days.length - 1 && days[i].date === today) {
+        if (i === pastAndToday.length - 1 && day.date === todayStr) {
           continue; // Today might not have commits yet
         }
         break;
