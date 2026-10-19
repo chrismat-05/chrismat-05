@@ -11,22 +11,38 @@ I’m Chris Mathew Aje, pursuing my BCA at Kristu Jayanti College in Bengaluru. 
 
 <br/>
 
-[![Projects](https://img.shields.io/badge/Projects-121011?style=flat-square&logo=codeforces&logoColor=white)](https://thecma.xyz)
-
-## 🌐 Socials:
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-121011?style=flat-square&logo=linkedin&logoColor=white)](https://in.linkedin.com/in/chrismaje)
-[![Email](https://img.shields.io/badge/Email-121011?style=flat-square&logo=gmail&logoColor=white)](mailto:chrismaje63@gmail.com)
-[![X](https://img.shields.io/badge/X-121011?style=flat-square&logo=x&logoColor=white)](https://x.com/chrismat_05)
-[![Instagram](https://img.shields.io/badge/Instagram-121011?style=flat-square&logo=instagram&logoColor=white)](https://instagram.com/chrismat_05)
-[![Facebook](https://img.shields.io/badge/Facebook-121011?style=flat-square&logo=facebook&logoColor=white)](https://facebook.com/chrismat005)
+<p align="left">
+  <a href="https://thecma.xyz" target="_blank" title="Projects & Website">
+    <img src="assets/icons/globe.svg" width="22" height="22" alt="Website" />
+  </a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="https://in.linkedin.com/in/chrismaje" target="_blank" title="LinkedIn">
+    <img src="assets/icons/linkedin.svg" width="22" height="22" alt="LinkedIn" />
+  </a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="mailto:chrismaje63@gmail.com" title="Email">
+    <img src="assets/icons/mail.svg" width="22" height="22" alt="Email" />
+  </a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="https://x.com/chrismat_05" target="_blank" title="X (Twitter)">
+    <img src="assets/icons/x.svg" width="22" height="22" alt="X" />
+  </a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="https://instagram.com/chrismat_05" target="_blank" title="Instagram">
+    <img src="assets/icons/instagram.svg" width="22" height="22" alt="Instagram" />
+  </a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="https://facebook.com/chrismat005" target="_blank" title="Facebook">
+    <img src="assets/icons/facebook.svg" width="22" height="22" alt="Facebook" />
+  </a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="https://paypal.me/chrismat05" target="_blank" title="Buy Me a Coffee">
+    <img src="assets/icons/coffee.svg" width="22" height="22" alt="Support" />
+  </a>
+</p>
 
 ---
 
 <p align="center">
   <img alt="Skyline Contribution City" src="assets/skyline.svg" width="100%" />
 </p>
-
----
-
-### ☕ Support
-[![Buy Me a Coffee](https://img.shields.io/badge/☕_Buy_Me_a_Coffee-121011?style=flat-square&logo=paypal&logoColor=white)](https://paypal.me/chrismat05)
