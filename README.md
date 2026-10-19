@@ -17,7 +17,7 @@ I’m Chris Mathew Aje, pursuing my BCA at Kristu Jayanti College in Bengaluru. 
   <img height="125" src="https://streak-stats.demolab.com/?user=chrismat-05&theme=tokyonight&hide_border=true" alt="GitHub Streak Stats" />
 </p>
 <p align="center">
-  <img src="https://github-trophies.vercel.app/?username=chrismat-05&theme=tokyonight&no-frame=true&margin-w=4" alt="GitHub Profile Trophies" />
+  <img width="100%" src="https://github-trophies.vercel.app/?username=chrismat-05&theme=tokyonight&no-frame=true&margin-w=4&column=8&title=MultiLanguage,LongTimeUser,NewUser,Commits,PullRequest,Followers,Repositories,Issues" alt="GitHub Profile Trophies" />
 </p>
 
 ---
