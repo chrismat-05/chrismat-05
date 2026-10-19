@@ -22,9 +22,6 @@ I’m Chris Mathew Aje, pursuing my BCA at Kristu Jayanti College in Bengaluru. 
 <p align="center">
   <img src="https://github-trophies.vercel.app/?username=chrismat-05&theme=tokyonight&no-frame=true&margin-w=4" alt="GitHub Profile Trophies" />
 </p>
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=html,css,js,ts,react,nextjs,tailwind,nodejs,python,c,cpp,mysql,firebase,figma,git,github,vscode" alt="Skill Icons" />
-</p>
 
 ---
 
