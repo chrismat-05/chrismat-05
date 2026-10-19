@@ -1,0 +1,62 @@
+name: Daily Profile Assets Refresh
+
+on:
+  schedule:
+    # Runs daily at 03:17 UTC (off-the-hour for GitHub reliability)
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-profile-refresh
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout profile repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: stable
+
+      - name: Refresh gh-ascii cards
+        env:
+          HANDLE: ${{ github.repository_owner }}
+          GH_ASCII_URL: https://gh.crafter.run
+          COLS: "100"
+        run: |
+          node scripts/refresh-cards.mjs
+
+      - name: Refresh Skyline city graph (with rotating daily themes)
+        env:
+          # Uses SKYLINE_TOKEN secret if set (for private contributions), otherwise fallback to GITHUB_TOKEN
+          GITHUB_TOKEN: ${{ secrets.SKYLINE_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          THEMES=("neon" "synthwave" "matrix" "amber" "ice" "sunset" "toxic" "vapor" "crimson" "prism" "rainbow")
+          INDEX=$(( $(date +%j) % ${#THEMES[@]} ))
+          CHOSEN_THEME=${THEMES[$INDEX]}
+          echo "Selected Skyline theme for today: $CHOSEN_THEME"
+          go run github.com/pinkpixel-dev/skyline@latest -theme "$CHOSEN_THEME" -svg assets/skyline.svg "${{ github.repository_owner }}"
+
+      - name: Commit and push if assets changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/
+          if git diff --cached --quiet; then
+            echo "Profile assets are up to date — nothing to commit."
+          else
+            git commit -m "chore(profile): daily update of profile card and skyline graph [skip ci]"
+            git push
+          fi
