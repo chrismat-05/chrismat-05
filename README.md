@@ -12,9 +12,9 @@ I’m Chris Mathew Aje, pursuing my BCA at Kristu Jayanti College in Bengaluru. 
 ---
 
 <p align="center">
-  <img height="125" src="https://github-readme-stats.vercel.app/api?username=chrismat-05&hide=stars&theme=tokyonight&hide_border=true&show_icons=true" alt="GitHub Stats" />
-  <img height="125" src="https://github-readme-stats.vercel.app/api/top-langs/?username=chrismat-05&theme=tokyonight&hide_border=true&layout=compact" alt="Top Languages" />
-  <img height="125" src="https://streak-stats.demolab.com/?user=chrismat-05&theme=tokyonight&hide_border=true" alt="GitHub Streak Stats" />
+  <img height="105" src="https://github-readme-stats.vercel.app/api?username=chrismat-05&hide=stars&theme=tokyonight&hide_border=true&show_icons=true" alt="GitHub Stats" />
+  <img height="105" src="https://github-readme-stats.vercel.app/api/top-langs/?username=chrismat-05&theme=tokyonight&hide_border=true&layout=compact" alt="Top Languages" />
+  <img height="105" src="https://streak-stats.demolab.com/?user=chrismat-05&theme=tokyonight&hide_border=true" alt="GitHub Streak Stats" />
 </p>
 <p align="center">
   <img width="100%" src="https://github-trophies.vercel.app/?username=chrismat-05&theme=tokyonight&no-frame=true&margin-w=4&column=8&title=MultiLanguage,LongTimeUser,NewUser,Commits,PullRequest,Followers,Repositories,Issues" alt="GitHub Profile Trophies" />
