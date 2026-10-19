@@ -12,6 +12,11 @@ I’m Chris Mathew Aje, pursuing my BCA at Kristu Jayanti College in Bengaluru. 
 ---
 
 <p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=chrismat-05&hide=stars&theme=tokyonight&hide_border=true&show_icons=true" alt="GitHub Stats" />
+  &nbsp;
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=chrismat-05&theme=tokyonight&hide_border=true&layout=compact" alt="Top Languages" />
+</p>
+<p align="center">
   <img src="https://streak-stats.demolab.com/?user=chrismat-05&theme=tokyonight&hide_border=true" alt="GitHub Streak Stats" />
 </p>
 <p align="center">
