@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Profile Preview - @chrismat-05</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --text: #e6edf3;
+      --text-muted: #848d97;
+      --border: #30363d;
+      --link: #4493f8;
+      --accent: #238636;
+      --btn-bg: #21262d;
+      --btn-border: #363b42;
+    }
+
+    [data-theme="light"] {
+      --bg: #ffffff;
+      --card-bg: #f6f8fa;
+      --text: #1f2328;
+      --text-muted: #656d76;
+      --border: #d0d7de;
+      --link: #0969da;
+      --accent: #1f883d;
+      --btn-bg: #f3f4f6;
+      --btn-border: #d0d7de;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      padding: 24px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .top-bar {
+      max-width: 980px;
+      margin: 0 auto 20px auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .title-area h1 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .title-area p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button, select {
+      background: var(--btn-bg);
+      color: var(--text);
+      border: 1px solid var(--btn-border);
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    button:hover, select:hover {
+      border-color: var(--text-muted);
+      filter: brightness(1.1);
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--card-bg);
+      padding: 32px 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .readme-header {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    h1, h2 {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-top: 28px;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    h1 { font-size: 24px; }
+    h2 { font-size: 20px; }
+
+    p {
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0 20px 0;
+    }
+
+    .badges img {
+      height: 28px;
+    }
+
+    .hero-card, .skyline-card {
+      width: 100%;
+      margin: 16px 0;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-card img, .skyline-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 32px 0;
+    }
+
+    .theme-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .theme-pill {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      background: var(--btn-bg);
+      border: 1px solid var(--btn-border);
+      cursor: pointer;
+    }
+
+    .theme-pill.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+  </style>
+</head>
+<body data-theme="dark">
+
+  <div class="top-bar">
+    <div class="title-area">
+      <h1>GitHub Profile Live Preview</h1>
+      <p>Simulating <strong>github.com/chrismat-05</strong> • Changes are previewed live locally</p>
+    </div>
+
+    <div class="controls">
+      <button id="themeToggleBtn" onclick="togglePageTheme()">
+        🌙 Switch to Light Mode
+      </button>
+
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <span style="font-size: 13px; color: var(--text-muted);">Skyline Theme:</span>
+        <select id="skylineThemeSelect" onchange="switchSkylineTheme(this.value)">
+          <option value="neon" selected>neon (Default)</option>
+          <option value="synthwave">synthwave</option>
+          <option value="matrix">matrix</option>
+          <option value="amber">amber</option>
+          <option value="ice">ice</option>
+          <option value="sunset">sunset</option>
+          <option value="toxic">toxic</option>
+          <option value="vapor">vapor</option>
+          <option value="crimson">crimson</option>
+          <option value="mono">mono</option>
+          <option value="prism">prism</option>
+          <option value="rainbow">rainbow</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="readme-header">
+      <svg height="16" viewBox="0 0 16 16" width="16" fill="currentColor">
+        <path d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.53-.53a3.75 3.75 0 0 1 2.65-1.094h4.07V2.5H11.006a2.25 2.25 0 0 0-2.25 2.25v6.5a.75.75 0 0 1-1.505 0v-6.5A2.25 2.25 0 0 0 5.003 2.5H1.5v8.95h3.758a3.75 3.75 0 0 1 2.65 1.094Z"></path>
+      </svg>
+      chrismat-05 / README.md
+    </div>
+
+    <!-- Hero Card -->
+    <div class="hero-card">
+      <img id="heroImage" src="assets/dark_mode.svg" alt="Chris Mathew Aje ASCII Profile Card" />
+    </div>
+
+    <!-- About Me -->
+    <h1>💫 About Me:</h1>
+    <p>
+      I’m Chris Mathew Aje, pursuing my BCA at Kristu Jayanti College in Bengaluru. I enjoy digging into tech, discover and build things that work well to suit needs. Whether it’s web development, backend systems, or custom project setups, I am into figuring out how to make things simpler and smoother. I’ve had hands-on experience organizing my projects under subdomains on <a href="https://thecma.xyz" target="_blank">thecma.xyz</a>, so it's organized and professional.<br><br>
+      But I’m not all code and logic. I’ve got a creative side too, especially when it comes to design. I look into the details, how appealing it is, from layout to color choices. I’ve made websites for communities I’m part of and always try to make them feel fresh and intentional. Whether it’s for my portfolio or something I’m just experimenting with, I prefer building projects that reflect my personality. To me, creativity and tech go hand-in-hand, and I’m just taking it one step at a time, always trying to bridge the two.
+    </p>
+
+    <div style="margin: 12px 0;">
+      <a href="https://thecma.xyz" target="_blank">
+        <img alt="Projects" src="https://img.shields.io/badge/Projects-%2300C7B7.svg?style=for-the-badge&logo=codeforces&logoColor=white" />
+      </a>
+    </div>
+
+    <!-- Socials -->
+    <h2>🌐 Socials:</h2>
+    <div class="badges">
+      <a href="https://in.linkedin.com/in/chrismaje" target="_blank"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+      <a href="mailto:chrismaje63@gmail.com"><img alt="Email" src="https://img.shields.io/badge/Email-D14836.svg?style=for-the-badge&logo=gmail&logoColor=white" /></a>
+      <a href="https://facebook.com/chrismat005" target="_blank"><img alt="Facebook" src="https://img.shields.io/badge/Facebook-%231877F2.svg?style=for-the-badge&logo=facebook&logoColor=white" /></a>
+      <a href="https://instagram.com/chrismat_05" target="_blank"><img alt="Instagram" src="https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=instagram&logoColor=white" /></a>
+      <a href="https://x.com/chrismat_05" target="_blank"><img alt="X" src="https://img.shields.io/badge/X-000000.svg?style=for-the-badge&logo=X&logoColor=white" /></a>
+    </div>
+
+    <hr />
+
+    <!-- Skills -->
+    <h1>💻 Skills:</h1>
+    <div class="badges">
+      <img alt="HTML5" src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" />
+      <img alt="CSS3" src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white" />
+      <img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" />
+      <img alt="TypeScript" src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" />
+      <img alt="Python" src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" />
+      <img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
+      <img alt="NodeJS" src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white" />
+      <img alt="TailwindCSS" src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+      <img alt="Express.js" src="https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB" />
+      <img alt="Framer" src="https://img.shields.io/badge/framer-0055FF.svg?style=for-the-badge&logo=framer&logoColor=white" />
+      <img alt="Figma" src="https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white" />
+      <img alt="Canva" src="https://img.shields.io/badge/Canva-%2300C4CC.svg?style=for-the-badge&logo=Canva&logoColor=white" />
+      <img alt="GitHub" src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" />
+      <img alt="Git" src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" />
+      <img alt="VS Code" src="https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" />
+      <img alt="Netlify" src="https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7" />
+      <img alt="Vercel" src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white" />
+      <img alt="Firebase" src="https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase" />
+      <img alt="Supabase" src="https://img.shields.io/badge/supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" />
+      <img alt="MongoDB" src="https://img.shields.io/badge/mongodb-%2347A248.svg?style=for-the-badge&logo=mongodb&logoColor=white" />
+      <img alt="SQLite" src="https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white" />
+      <img alt="MySQL" src="https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white" />
+      <img alt="SQL Plus" src="https://img.shields.io/badge/sqlplus-%23F80000.svg?style=for-the-badge&logo=oracle&logoColor=white" />
+      <img alt="API" src="https://img.shields.io/badge/api-%23000000.svg?style=for-the-badge&logo=fastapi&logoColor=white" />
+    </div>
+
+    <hr />
+
+    <!-- Skyline Section -->
+    <h1>🏙️ Skyline Contributions:</h1>
+    <div class="skyline-card">
+      <img id="skylineImage" alt="Skyline Contribution City" src="assets/skyline.svg" />
+    </div>
+
+    <hr />
+
+    <!-- Donate Section -->
+    <h1>💰 You can help me by donating</h1>
+    <div style="margin-top: 10px;">
+      <a href="https://paypal.me/chrismat05" target="_blank">
+        <img alt="PayPal" src="https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white" />
+      </a>
+    </div>
+  </div>
+
+  <script>
+    let currentTheme = 'dark';
+
+    function togglePageTheme() {
+      currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.body.setAttribute('data-theme', currentTheme);
+      const btn = document.getElementById('themeToggleBtn');
+      const hero = document.getElementById('heroImage');
+
+      if (currentTheme === 'dark') {
+        btn.innerHTML = '🌙 Switch to Light Mode';
+        hero.src = 'assets/dark_mode.svg';
+      } else {
+        btn.innerHTML = '☀️ Switch to Dark Mode';
+        hero.src = 'assets/light_mode.svg';
+      }
+    }
+
+    const PALETTES = {
+      neon: {
+        sky: "#15131c", star: "#5e5878", starHot: "#b8b2d6",
+        roof: "#ff3ea5", antenna: "#2de2e6", street: "#ff3ea5", label: "#8b85a3", text: "#f1eefa",
+        shades: ["#1f1b2b", "#26213a"],
+        windows: ["#3b3550", "#8a3b7a", "#ff3ea5", "#2de2e6", "#f4f1ff"],
+      },
+      synthwave: {
+        sky: "#1a1330", star: "#6f5f9a", starHot: "#d9ccf5",
+        roof: "#ff7edb", antenna: "#fede5d", street: "#f97e72", label: "#8d7fb3", text: "#f4eefe",
+        shades: ["#241a3f", "#2b1f4a"],
+        windows: ["#3d2d5c", "#6b4a9e", "#ff7edb", "#fede5d", "#fff4c9"],
+      },
+      matrix: {
+        sky: "#050805", star: "#1f3a26", starHot: "#8dffb0",
+        roof: "#00ff66", antenna: "#d4ff3a", street: "#00c853", label: "#4c8058", text: "#dcffe4",
+        shades: ["#0b120c", "#0f1810"],
+        windows: ["#163020", "#11803d", "#00e676", "#c6ff00", "#eaffef"],
+      },
+      amber: {
+        sky: "#0b0e14", star: "#363b46", starHot: "#c9c6bd",
+        roof: "#ff8f40", antenna: "#ffd580", street: "#e6b450", label: "#6c7380", text: "#e6e1cf",
+        shades: ["#12161e", "#171c25"],
+        windows: ["#252b36", "#a3474f", "#f07178", "#ff8f40", "#ffd580"],
+      },
+      ice: {
+        sky: "#0c0f14", star: "#34404f", starHot: "#cfe6ff",
+        roof: "#9ccfff", antenna: "#f2fbff", street: "#3d8bff", label: "#6b7d93", text: "#e9f3fc",
+        shades: ["#131922", "#18202b"],
+        windows: ["#212d3c", "#1f4e99", "#3d8bff", "#7fe3ff", "#f2fbff"],
+      },
+      sunset: {
+        sky: "#0f0a0d", star: "#4a333d", starHot: "#f2d0c4",
+        roof: "#ff5e62", antenna: "#ffe066", street: "#ff9e44", label: "#8a6c78", text: "#fbeee8",
+        shades: ["#1a1116", "#21141b"],
+        windows: ["#311e28", "#8c2f66", "#ff4f6d", "#ff9e44", "#ffe066"],
+      },
+      toxic: {
+        sky: "#070906", star: "#2f3a22", starHot: "#e2f5b0",
+        roof: "#b8ff00", antenna: "#c77dff", street: "#8fd400", label: "#748060", text: "#f1f8dc",
+        shades: ["#0f130b", "#14190f"],
+        windows: ["#212a17", "#5c8a00", "#b8ff00", "#b56cff", "#f2ffc7"],
+      },
+      vapor: {
+        sky: "#0e0c14", star: "#3e3858", starHot: "#e2dcff",
+        roof: "#ff9de2", antenna: "#7df9ff", street: "#b29dff", label: "#8580a6", text: "#f5f2ff",
+        shades: ["#17141f", "#1d1927"],
+        windows: ["#2b263b", "#6d5cb0", "#ff9de2", "#7df9ff", "#fff3b8"],
+      },
+      crimson: {
+        sky: "#0a0607", star: "#3d2328", starHot: "#e8b8bf",
+        roof: "#ff2e4d", antenna: "#ffb199", street: "#c4142f", label: "#7f5a60", text: "#f9e8ea",
+        shades: ["#140b0d", "#1a0e11"],
+        windows: ["#2a1519", "#7a1426", "#e0193a", "#ff6b3d", "#ffd9c7"],
+      },
+      mono: {
+        sky: "#0c0d0f", star: "#363940", starHot: "#d0d4db",
+        roof: "#f0f2f5", antenna: "#fafbfc", street: "#9aa0aa", label: "#6b707a", text: "#eef0f4",
+        shades: ["#15171a", "#1b1d21"],
+        windows: ["#272a30", "#4d525b", "#8b919c", "#c9ced6", "#fafbfc"],
+      },
+      prism: {
+        sky: "#121118", star: "#4d4866", starHot: "#d6d0f0",
+        roof: "#b14dff", antenna: "#ff7a00", street: "#00e5ff", label: "#8a84a3", text: "#f3f0fb",
+        shades: ["#1b1924", "#221f2d"],
+        windows: ["#2f2b3e", "#ff2e88", "#ffe600", "#39ff14", "#00e5ff"],
+      },
+      rainbow: {
+        sky: "#050505", star: "#38383e", starHot: "#d4d4dc",
+        roof: "#9b5de5", antenna: "#ffd23f", street: "#ff7f2a", label: "#76767e", text: "#f2f2f2",
+        shades: ["#0e0e10", "#141416"],
+        windows: ["#222228", "#e63946", "#ffb627", "#3fbf5f", "#3d9bff"],
+      },
+    };
+
+    let baseSvgText = null;
+
+    async function loadSvg() {
+      if (!baseSvgText) {
+        const res = await fetch('assets/skyline.svg');
+        baseSvgText = await res.text();
+      }
+      return baseSvgText;
+    }
+
+    async function switchSkylineTheme(themeName) {
+      const target = PALETTES[themeName] || PALETTES.neon;
+      const base = PALETTES.neon;
+      const svgText = await loadSvg();
+
+      let modified = svgText;
+      // Replace sky rect
+      modified = modified.replace(new RegExp(`fill="${base.sky}"`, 'g'), `fill="${target.sky}"`);
+      // Replace roof
+      modified = modified.replace(new RegExp(`fill="${base.roof}"`, 'g'), `fill="${target.roof}"`);
+      // Replace antenna
+      modified = modified.replace(new RegExp(`fill="${base.antenna}"`, 'g'), `fill="${target.antenna}"`);
+      // Replace street
+      modified = modified.replace(new RegExp(`fill="${base.street}"`, 'g'), `fill="${target.street}"`);
+      // Replace label
+      modified = modified.replace(new RegExp(`fill="${base.label}"`, 'g'), `fill="${target.label}"`);
+      // Replace star hot
+      modified = modified.replace(new RegExp(`fill="${base.starHot}"`, 'g'), `fill="${target.starHot}"`);
+      // Replace star
+      modified = modified.replace(new RegExp(`fill="${base.star}"`, 'g'), `fill="${target.star}"`);
+      // Replace shades
+      base.shades.forEach((s, idx) => {
+        modified = modified.replace(new RegExp(`fill="${s}"`, 'g'), `fill="${target.shades[idx]}"`);
+      });
+      // Replace windows
+      base.windows.forEach((w, idx) => {
+        modified = modified.replace(new RegExp(`fill="${w}"`, 'g'), `fill="${target.windows[idx]}"`);
+      });
+
+      const blob = new Blob([modified], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      document.getElementById('skylineImage').src = url;
+    }
+
+    // Preload SVG on load
+    loadSvg();
+  </script>
+</body>
+</html>
