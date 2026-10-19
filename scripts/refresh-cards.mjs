@@ -8,17 +8,20 @@ const ASSETS_DIR = path.join(ROOT, 'assets');
 
 const HANDLE = process.env.HANDLE || 'chrismat-05';
 const GH_ASCII_URL = process.env.GH_ASCII_URL || 'https://gh.crafter.run';
-const COLS = process.env.COLS || '100';
+// 70 columns gives ~30 ASCII rows, perfectly matching the 13 info rows in height
+const COLS = process.env.COLS || '70';
 
 /**
  * Cleans the gh-ascii SVG by:
  * 1. Removing the "Top repo" line
  * 2. Removing the "Last 12 Months" contribution graph & sparkline row
- *    so Skyline can serve as the sole contribution graph.
+ * 3. Re-aligning the left ASCII art so its height and top baseline
+ *    perfectly match the right-side info block in equal balance.
+ * 4. Trimming the overall SVG height and viewBox to eliminate empty space.
  */
-function cleanSvg(svgText) {
+function cleanAndBalanceSvg(svgText) {
   const lines = svgText.split('\n');
-  const filtered = [];
+  const filteredLines = [];
   let skipping = false;
 
   for (let i = 0; i < lines.length; i++) {
@@ -36,7 +39,6 @@ function cleanSvg(svgText) {
     }
 
     if (skipping) {
-      // Check if this line is part of the Last 12 Months block
       if (
         line.includes('Contributions') ||
         line.includes('Reviews') ||
@@ -47,18 +49,71 @@ function cleanSvg(svgText) {
       ) {
         continue;
       }
-      // If closing svg tag reached, stop skipping
       if (line.includes('</svg>')) {
         skipping = false;
-        filtered.push(line);
+        filteredLines.push(line);
         continue;
       }
     }
 
-    filtered.push(line);
+    filteredLines.push(line);
   }
 
-  return filtered.join('\n');
+  // Find min/max Y for info lines and ASCII art lines
+  let minInfoY = Infinity;
+  let maxInfoY = -Infinity;
+  let minAsciiY = Infinity;
+  let maxAsciiY = -Infinity;
+
+  for (const line of filteredLines) {
+    if (line.includes('font-size="8"')) {
+      const match = line.match(/y="([\d\.]+)"/);
+      if (match) {
+        const y = parseFloat(match[1]);
+        minAsciiY = Math.min(minAsciiY, y);
+        maxAsciiY = Math.max(maxAsciiY, y);
+      }
+    } else if (line.includes('font-size="16"')) {
+      const match = line.match(/y="([\d\.]+)"/);
+      if (match) {
+        const y = parseFloat(match[1]);
+        minInfoY = Math.min(minInfoY, y);
+        maxInfoY = Math.max(maxInfoY, y);
+      }
+    }
+  }
+
+  // Calculate vertical shift so the top of ASCII art aligns with the top of info block
+  const targetAsciiTop = minInfoY - 5;
+  const shift = (minAsciiY !== Infinity && minInfoY !== Infinity) ? (minAsciiY - targetAsciiTop) : 0;
+
+  const balancedLines = filteredLines.map((line) => {
+    if (shift !== 0 && line.includes('font-size="8"')) {
+      return line.replace(/y="([\d\.]+)"/, (_, y) => `y="${(parseFloat(y) - shift).toFixed(1)}"`);
+    }
+    return line;
+  });
+
+  // Calculate new total height
+  const effectiveAsciiMaxY = maxAsciiY !== -Infinity ? (maxAsciiY - shift) : maxInfoY;
+  const newMaxY = Math.max(maxInfoY, effectiveAsciiMaxY);
+  const padBottom = 28;
+  const newHeight = Math.round(newMaxY + padBottom);
+
+  // Update root svg and rect height
+  const result = balancedLines.map((line) => {
+    if (line.startsWith('<svg')) {
+      return line
+        .replace(/height="\d+"/, `height="${newHeight}"`)
+        .replace(/viewBox="0 0 (\d+) \d+"/, `viewBox="0 0 $1 ${newHeight}"`);
+    }
+    if (line.includes('<rect') && line.includes('rx="8"')) {
+      return line.replace(/height="\d+(\.\d+)?"/, `height="${newHeight - 1}"`);
+    }
+    return line;
+  }).join('\n');
+
+  return result;
 }
 
 async function fetchTheme(theme) {
@@ -75,7 +130,7 @@ async function fetchTheme(theme) {
   }
 
   const rawSvg = await res.text();
-  return cleanSvg(rawSvg);
+  return cleanAndBalanceSvg(rawSvg);
 }
 
 async function main() {
@@ -92,8 +147,8 @@ async function main() {
   await fs.writeFile(darkPath, darkSvg, 'utf-8');
   await fs.writeFile(lightPath, lightSvg, 'utf-8');
 
-  console.log(`Saved: ${darkPath}`);
-  console.log(`Saved: ${lightPath}`);
+  console.log(`Saved balanced SVG: ${darkPath}`);
+  console.log(`Saved balanced SVG: ${lightPath}`);
 }
 
 main().catch((err) => {

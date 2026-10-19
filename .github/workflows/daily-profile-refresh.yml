@@ -34,7 +34,7 @@ jobs:
         env:
           HANDLE: ${{ github.repository_owner }}
           GH_ASCII_URL: https://gh.crafter.run
-          COLS: "100"
+          COLS: "70"
         run: |
           node scripts/refresh-cards.mjs
 
